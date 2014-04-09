@@ -7,7 +7,7 @@ module DPLA
   require 'dpla/source_resource'
   require 'dpla/collection'
   require 'dpla/place'
-  require 'dpla/edm_time_span'
+  require 'dpla/time_span'
   require 'dpla/aggregation'
   require 'dpla/web_resource'
   require 'dpla/agent'
