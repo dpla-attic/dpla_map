@@ -1,4 +1,5 @@
 require 'active_fedora'
+require 'linked_vocabs'
 
 module DPLA
   require 'dpla/vocabularies'

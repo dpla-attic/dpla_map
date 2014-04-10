@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'active-fedora'
+gem 'linked_vocabs', :git => 'https://github.com/no-reply/linked_vocabs.git'
 gem 'rdf-mongo'
 
 group :development do
