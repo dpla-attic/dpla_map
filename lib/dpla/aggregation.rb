@@ -1,4 +1,4 @@
-module DPLA::ApplicationProfile
+module DPLA
   class Aggregation < ActiveFedora::Rdf::Resource
     configure :type => DPLA::Vocabularies::ORE.Aggregation
 
