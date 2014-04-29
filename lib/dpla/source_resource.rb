@@ -1,5 +1,5 @@
 module DPLA
-  class SourceResource < ActiveFedora::Rdf::Resource
+  class SourceResource < ActiveTriples::Resource
     configure :type => DPLA::Vocabularies::DPLA.SourceResource
 
     property :collection, :predicate => RDF::DC.isPartOf, :class_name => 'DPLA::Collection'

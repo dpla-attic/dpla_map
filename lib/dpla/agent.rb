@@ -1,5 +1,5 @@
 module DPLA
-  class Agent < ActiveFedora::Rdf::Resource
+  class Agent < ActiveTriples::Resource
     configure :type => DPLA::Vocabularies::EDM.Agent
   end
 end

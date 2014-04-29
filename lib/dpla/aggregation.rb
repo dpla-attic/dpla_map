@@ -1,5 +1,5 @@
 module DPLA
-  class Aggregation < ActiveFedora::Rdf::Resource
+  class Aggregation < ActiveTriples::Resource
     configure :type => DPLA::Vocabularies::ORE.Aggregation
 
     property :aggregatedSourceResource, :predicate => DPLA::Vocabularies::EDM.aggregatedCHO

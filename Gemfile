@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem 'active-fedora'
+gem 'active-triples'
 gem 'linked_vocabs', :git => 'https://github.com/no-reply/linked_vocabs.git'
 gem 'rdf-mongo'
 

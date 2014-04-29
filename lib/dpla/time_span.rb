@@ -1,5 +1,5 @@
 module DPLA
-  class TimeSpan < ActiveFedora::Rdf::Resource
+  class TimeSpan < ActiveTriples::Resource
     configure :type => DPLA::Vocabularies::EDM.TimeSpan
 
     property :date, :predicate => RDF::DC11.date

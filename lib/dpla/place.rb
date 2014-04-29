@@ -1,5 +1,5 @@
 module DPLA
-  class Place < ActiveFedora::Rdf::Resource
+  class Place < ActiveTriples::Resource
     configure :type => DPLA::Vocabularies::DPLA.Place
 
     property :city, :predicate => DPLA::Vocabularies::DPLA.city
