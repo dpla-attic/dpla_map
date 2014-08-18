@@ -15,7 +15,7 @@ module DPLA
     property :publisher, :predicate => RDF::DC11.publisher # literal and/or URI
     property :relation, :predicate => RDF::DC11.relation # literal and/or URI
     property :rights, :predicate => RDF::DC11.rights
-    property :genre, :predicate => DPLA::Vocabularies::EDM.hasType, #:class_name => 'DPLA::AAT'
+    property :genre, :predicate => DPLA::Vocabularies::EDM.hasType #, :class_name => 'DPLA::Controlled::AAT'
     property :stateLocatedIn, :predicate => DPLA::Vocabularies::EDM.currentLocation, :class_name => 'DPLA::Controlled::ISO_3166' #min: 0; max: 1
     property :subject, :predicate => RDF::DC11.subject # comply w/ JSON-LD Usage note
     property :temporalCoverage, :predicate => RDF::DC.temporal # literal and/or URI3
