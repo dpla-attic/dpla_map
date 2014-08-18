@@ -20,7 +20,7 @@ module DPLA
     property :subject, :predicate => RDF::DC11.subject # comply w/ JSON-LD Usage note
     property :temporalCoverage, :predicate => RDF::DC.temporal # literal and/or URI3
     property :title, :predicate => RDF::DC11.title # any reason not to use dcterms here? RDF::DC.title
-    property :type, :predicate => RDF::DC11.type
+    property :dctype, :predicate => RDF::DC11.type
 
     # formal rights statements
     # property :rights, :predicate => RDF::DC.rights, :class_name => 'DPLA::RightsStatement'
