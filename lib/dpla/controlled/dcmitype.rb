@@ -1,5 +1,5 @@
 module DPLA::Controlled
-  class DCMIType < ActiveFedora::Rdf::Resource
+  class DCMIType < ActiveTriples::Resource
     include LinkedVocabs::Controlled
     use_vocabulary :dcmitype
 

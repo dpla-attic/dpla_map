@@ -1,6 +1,6 @@
 module DPLA
   class SourceResource < ActiveTriples::Resource
-    configure :type => DPLA::Vocabularies::DPLA.SourceResource
+    configure :base_uri => 'http://dp.la/api/items/', :type => DPLA::Vocabularies::DPLA.SourceResource
 
     property :collection, :predicate => RDF::DC.isPartOf, :class_name => 'DPLA::Collection'
     property :contributor, :predicate => RDF::DC11.contributor

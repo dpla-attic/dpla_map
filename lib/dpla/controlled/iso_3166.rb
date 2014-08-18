@@ -1,4 +1,4 @@
 module DPLA::Controlled
-  class ISO_3166 < ActiveFedora::Rdf::Resource
+  class ISO_3166 < ActiveTriples::Resource
   end
 end

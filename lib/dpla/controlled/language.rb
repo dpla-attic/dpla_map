@@ -1,4 +1,4 @@
 module DPLA::Controlled
-  class Language < ActiveFedora::Rdf::Resource
+  class Language < ActiveTriples::Resource
   end
 end

@@ -2,9 +2,8 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem 'active-triples'
+gem 'active-triples', '~> 0.2.1'
 gem 'linked_vocabs', :git => 'https://github.com/no-reply/linked_vocabs.git'
-gem 'rdf-mongo'
 
 group :development do
   gem 'pry'
@@ -16,6 +15,7 @@ group :development do
   # Guard for auto-test running
   gem 'guard', '~>1.0'
   gem 'guard-rspec', '~>3.0'
+  gem 'rdf-mongo'
 end
 
 group :test do
@@ -23,4 +23,5 @@ group :test do
 end
 
 group :development, :test do
+  gem 'factory_girl', '~> 4.0'
 end
