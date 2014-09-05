@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem 'active-triples', '~> 0.2.1'
+gem 'active-triples', :git => 'https://github.com/no-reply/ActiveTriples.git', :branch => 'feature/validations-2'
 gem 'linked_vocabs', :git => 'https://github.com/no-reply/linked_vocabs.git'
 
 group :development do

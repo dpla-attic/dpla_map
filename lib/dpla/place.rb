@@ -2,6 +2,8 @@ module DPLA
   class Place < ActiveTriples::Resource
     configure :type => DPLA::Vocabularies::DPLA.Place
 
+    validates_presence_of :name # validates_cardinality_of ... :count => 1?
+
     property :name, :predicate => RDF::SKOS.prefLabel
     property :city, :predicate => DPLA::Vocabularies::DPLA.city
     property :state, :predicate => DPLA::Vocabularies::DPLA.state

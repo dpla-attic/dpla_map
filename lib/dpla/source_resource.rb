@@ -2,6 +2,8 @@ module DPLA
   class SourceResource < ActiveTriples::Resource
     configure :base_uri => 'http://dp.la/api/items/', :type => DPLA::Vocabularies::DPLA.SourceResource
 
+    validates_presence_of :title, :rights
+
     property :collection, :predicate => RDF::DC.isPartOf, :class_name => 'DPLA::Collection'
     property :contributor, :predicate => RDF::DC11.contributor # literal and/or URI
     property :creator, :predicate => RDF::DC11.creator # literal and/or URI
@@ -18,7 +20,7 @@ module DPLA
     property :genre, :predicate => DPLA::Vocabularies::EDM.hasType #, :class_name => 'DPLA::Controlled::AAT'
     property :stateLocatedIn, :predicate => DPLA::Vocabularies::EDM.currentLocation, :class_name => 'DPLA::Controlled::ISO_3166' #min: 0; max: 1
     property :subject, :predicate => RDF::DC11.subject # comply w/ JSON-LD Usage note
-    property :temporalCoverage, :predicate => RDF::DC.temporal # literal and/or URI3
+    property :temporalCoverage, :predicate => RDF::DC.temporal # literal and/or URI
     property :title, :predicate => RDF::DC11.title # any reason not to use dcterms here? RDF::DC.title
     property :dctype, :predicate => RDF::DC11.type
 

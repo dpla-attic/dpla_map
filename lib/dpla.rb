@@ -2,6 +2,8 @@ require 'active_triples'
 require 'linked_vocabs'
 
 module DPLA
+  require 'rdf/dcmitype'
+
   require 'dpla/vocabularies'
   require 'dpla/controlled'
 

@@ -2,6 +2,8 @@ module DPLA
   class Aggregation < ActiveTriples::Resource
     configure :type => DPLA::Vocabularies::ORE.Aggregation
 
+    validates_presence_of :originalRecord, :isShownAt, :object, :provider
+
     property :aggregatedSourceResource, :predicate => DPLA::Vocabularies::EDM.aggregatedCHO, :class_name => 'DPLA::SourceReource' # should allow all edm:providedCHOs
     property :dataProvider, :predicate => DPLA::Vocabularies::EDM.dataProvider
     property :originalRecord, :predicate => DPLA::Vocabularies::DPLA.originalRecord
