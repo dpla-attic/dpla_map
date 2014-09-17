@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = "dpla"
-  s.version     = '3.1.0.0.pre.1'
+  s.version     = '4.0.0.0.pre.1'
   s.platform    = Gem::Platform::RUBY
   s.required_ruby_version     = '>= 1.9.3'
 
