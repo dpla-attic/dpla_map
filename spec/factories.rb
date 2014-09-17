@@ -10,13 +10,12 @@ FactoryGirl.define do
     extent '10x12 cm'
     format 'Silver Gelatin Print'
     identifier '510d47e3-57d2-a3d9-e040-e00a18064a99'
-    language 'en'
+    language { |language| language.association :language, :strategy => :build }
     place { |place| place.association :place, :strategy => :build }
     publisher 'Penguin Books'
     relation ['Stonewall Inn [1]', 'Stonewall Inn [3]']
     rights "The New York Public Library is interested in learning more about items you've seen on our websites or elsewhere online. If you have any more information about an item or its copyright status, we want to hear from you. Please contact DigitalCollections@nypl.org with your contact information and a link to the relevant content."
     genre 'protesting'
-    stateLocatedIn 'US-NY'
     temporalCoverage '1969'
     dctype 'Image'
   end
@@ -45,15 +44,20 @@ FactoryGirl.define do
 
   factory :place, class: DPLA::Place do
     name 'New York, NY'
-    city 'New York'
-    state 'NY'
-    county 'New York County'
-    coordinates '40.7127, 74.0059'
+    # city 'New York'
+    # county 'New York County'
+    # coordinates '40.7127, 74.0059'
   end
 
   factory :collection, class: DPLA::Collection do
     title 'Diana Davies photographs, 1965-1978'
     description 'Photographs of Diana Davies; LGBT and HIV/AIDS Activist Collections'
+  end
+
+  factory :language, class: DPLA::Controlled::Language do    
+    initialize_with do
+      new('eng')
+    end
   end
 end
 
