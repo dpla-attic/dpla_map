@@ -2,10 +2,10 @@ require 'active_triples'
 require 'linked_vocabs'
 
 module DPLA
-  require 'dpla/source_resource'
-  require 'dpla/collection'
-  require 'dpla/place'
-  require 'dpla/time_span'
-  require 'dpla/aggregation'
-  require 'dpla/web_resource'
+  autoload :SourceResource,     'dpla/source_resource'
+  autoload :Collection,         'dpla/collection'
+  autoload :Place,              'dpla/place'
+  autoload :TimeSpan,           'dpla/time_span'
+  autoload :Aggregation,        'dpla/aggregation'
+  autoload :WebResource,        'dpla/web_resource'
 end
