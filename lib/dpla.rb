@@ -8,5 +8,4 @@ module DPLA
   require 'dpla/time_span'
   require 'dpla/aggregation'
   require 'dpla/web_resource'
-  require 'dpla/agent'
 end
