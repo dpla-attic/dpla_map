@@ -1,18 +1,18 @@
 module DPLA
   class Aggregation < ActiveTriples::Resource
-    configure :type => DPLA::Vocabularies::ORE.Aggregation
+    configure :type => RDF::ORE.Aggregation
 
-    validates_presence_of :originalRecord, :isShownAt, :object, :provider
+    validates_presence_of :aggregatedSourceResource, :originalRecord, :isShownAt, :object, :provider
 
-    property :aggregatedSourceResource, :predicate => DPLA::Vocabularies::EDM.aggregatedCHO, :class_name => 'DPLA::SourceReource' # should allow all edm:providedCHOs
-    property :dataProvider, :predicate => DPLA::Vocabularies::EDM.dataProvider
-    property :originalRecord, :predicate => DPLA::Vocabularies::DPLA.originalRecord
-    property :hasView, :predicate => DPLA::Vocabularies::EDM.hasView, :class_name => 'DPLA::WebResource'
-    property :intermediateProvider, :predicate => DPLA::Vocabularies::DPLA.intermediateProvider
-    property :isShownAt, :predicate => DPLA::Vocabularies::EDM.isShownAt, :class_name => 'DPLA::WebResource'
-    property :object, :predicate => DPLA::Vocabularies::EDM.object, :class_name => 'DPLA::WebResource'
-    property :provider, :predicate => DPLA::Vocabularies::EDM.provider
-    property :rightsStatement, :predicate => DPLA::Vocabularies::EDM.rights, :class_name => 'DPLA::RightsStatement'
+    property :aggregatedSourceResource, :predicate => RDF::EDM.aggregatedCHO, :class_name => 'DPLA::SourceResource' # should allow all edm:providedCHOs
+    property :dataProvider, :predicate => RDF::EDM.dataProvider
+    property :originalRecord, :predicate => RDF::DPLA.originalRecord
+    property :hasView, :predicate => RDF::EDM.hasView, :class_name => 'DPLA::WebResource'
+    property :intermediateProvider, :predicate => RDF::DPLA.intermediateProvider
+    property :isShownAt, :predicate => RDF::EDM.isShownAt, :class_name => 'DPLA::WebResource'
+    property :object, :predicate => RDF::EDM.object, :class_name => 'DPLA::WebResource'
+    property :provider, :predicate => RDF::EDM.provider
+    property :rightsStatement, :predicate => RDF::EDM.rights, :class_name => 'DPLA::RightsStatement'
 
   end
 end

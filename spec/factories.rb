@@ -1,22 +1,60 @@
 FactoryGirl.define do
 
-  factory :source_resource, aliases: [:aggregatedSourceResource], class: DPLA::SourceResource do
+  factory :source_resource, class: DPLA::SourceResource do
+    collection { |collection| collection.association :collection, :strategy => :build }
+    contributor 'Norma Ford'
     title 'Stonewall Inn [2]'
     creator 'Davies, Diana (1938-)'
     subject ['Lesbians', 'Gay activists']
     description 'Window of the Stonewall Bar N.Y. 1969. The other half of the graffiti was erased by the time Diana photographed it.'
-    dcmitype DPLA::Controlled::DCMIType.new('Image').to_term
+    extent '10x12 cm'
+    format 'Silver Gelatin Print'
+    identifier '510d47e3-57d2-a3d9-e040-e00a18064a99'
+    language 'en'
+    place { |place| place.association :place, :strategy => :build }
+    publisher 'Penguin Books'
+    relation ['Stonewall Inn [1]', 'Stonewall Inn [3]']
+    rights "The New York Public Library is interested in learning more about items you've seen on our websites or elsewhere online. If you have any more information about an item or its copyright status, we want to hear from you. Please contact DigitalCollections@nypl.org with your contact information and a link to the relevant content."
+    genre 'protesting'
+    stateLocatedIn 'US-NY'
+    temporalCoverage '1969'
+    dctype 'Image'
   end
 
   factory :aggregation, class: DPLA::Aggregation do
-    aggregatedSourceResource :resource
-    provider :provider
+    aggregatedSourceResource { |sr| sr.association :source_resource, :strategy => :build }
+    dataProvider 'Manuscripts and Archives Division. The New York Public Library'
+    originalRecord '<record><title>Stonewall Inn [2]</title></record>'
+    hasView { |wr| wr.association :web_resource, :strategy => :build }
+    intermediateProvider 'NYPL'
+    isShownAt 'http://digitalcollections.nypl.org/items/510d47e3-57d2-a3d9-e040-e00a18064a99'
+    object 'http://dp.la/item/116d5aaf3d77a5d7c5a6c7a3e10c5afe'
+    provider { 
+      prov = ActiveTriples::Resource.new('http://dp.la/api/contributor/nypl')
+      prov << RDF::Statement(prov, RDF::SKOS.prefLabel, "The New York Public Library")
+      prov
+    }
+    rightsStatement { ActiveTriples::Resource.new('http://creativecommons.org/publicdomain/mark/1.0/') }
   end
 
-  factory :agent, aliases: [:provider], class: DPLA::Agent do
-    name 'The New York Public Library'
+  factory :web_resource, class: DPLA::WebResource do
+    format 'image/tiff'
+    rights 'Public Domain'
+    rightsStatement { ActiveTriples::Resource.new('http://creativecommons.org/publicdomain/mark/1.0/') }
   end
 
+  factory :place, class: DPLA::Place do
+    name 'New York, NY'
+    city 'New York'
+    state 'NY'
+    county 'New York County'
+    coordinates '40.7127, 74.0059'
+  end
+
+  factory :collection, class: DPLA::Collection do
+    title 'Diana Davies photographs, 1965-1978'
+    description 'Photographs of Diana Davies; LGBT and HIV/AIDS Activist Collections'
+  end
 end
 
 RSpec.configure do |config|

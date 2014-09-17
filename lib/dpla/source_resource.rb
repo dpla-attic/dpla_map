@@ -1,6 +1,6 @@
 module DPLA
   class SourceResource < ActiveTriples::Resource
-    configure :base_uri => 'http://dp.la/api/items/', :type => DPLA::Vocabularies::DPLA.SourceResource
+    configure :base_uri => 'http://dp.la/api/items/', :type => RDF::DPLA.SourceResource
 
     validates_presence_of :title, :rights
 
@@ -17,12 +17,12 @@ module DPLA
     property :publisher, :predicate => RDF::DC11.publisher # literal and/or URI
     property :relation, :predicate => RDF::DC11.relation # literal and/or URI
     property :rights, :predicate => RDF::DC11.rights
-    property :genre, :predicate => DPLA::Vocabularies::EDM.hasType #, :class_name => 'DPLA::Controlled::AAT'
-    property :stateLocatedIn, :predicate => DPLA::Vocabularies::EDM.currentLocation, :class_name => 'DPLA::Controlled::ISO_3166' #min: 0; max: 1
+    property :genre, :predicate => RDF::EDM.hasType # , :class_name => 'DPLA::Controlled::AAT'
+    property :stateLocatedIn, :predicate => RDF::EDM.currentLocation # , :class_name => 'DPLA::Controlled::ISO_3166' #min: 0; max: 1
     property :subject, :predicate => RDF::DC11.subject # comply w/ JSON-LD Usage note
     property :temporalCoverage, :predicate => RDF::DC.temporal # literal and/or URI
     property :title, :predicate => RDF::DC11.title # any reason not to use dcterms here? RDF::DC.title
-    property :dctype, :predicate => RDF::DC11.type
+    property :dctype, :predicate => RDF::DC11.type # , :class_name => 'DPLA::Controlled::DCMIType'
 
     # formal rights statements
     # property :rights, :predicate => RDF::DC.rights, :class_name => 'DPLA::RightsStatement'
