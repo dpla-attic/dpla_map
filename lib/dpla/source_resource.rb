@@ -20,7 +20,7 @@ module DPLA
     property :replacedBy, :predicate => RDF::DC.isReplacedBy # literal and/or URI
     property :replaces, :predicate => RDF::DC.replaces # literal and/or URI
     property :rights, :predicate => RDF::DC11.rights
-    property :genre, :predicate => RDF::EDM.hasType # , :class_name => 'DPLA::Controlled::AAT'
+    property :genre, :predicate => RDF::EDM.hasType, :class_name => 'DPLA::Controlled::Genre'
     property :subject, :predicate => RDF::DC.subject, :class_name => 'DPLA::Concept'
     property :temporalCoverage, :predicate => RDF::DC.temporal # literal and/or URI
     property :title, :predicate => RDF::DC11.title # any reason not to use dcterms here? RDF::DC.title
