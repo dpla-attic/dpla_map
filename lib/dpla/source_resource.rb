@@ -2,7 +2,8 @@ module DPLA
   class SourceResource < ActiveTriples::Resource
     configure :base_uri => 'http://dp.la/api/items/', :type => RDF::DPLA.SourceResource
 
-    validates_presence_of :title, :rights
+    validates_presence_of :rights, :title
+    validates_vocabulary_of :dctype, :genre, :language
 
     property :alternateTitle, :predicate => RDF::DC.alternative
     property :collection, :predicate => RDF::DC.isPartOf, :class_name => 'DPLA::Collection'

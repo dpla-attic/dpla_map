@@ -17,7 +17,7 @@ FactoryGirl.define do
     rights "The New York Public Library is interested in learning more about items you've seen on our websites or elsewhere online. If you have any more information about an item or its copyright status, we want to hear from you. Please contact DigitalCollections@nypl.org with your contact information and a link to the relevant content."
     genre { |genre| genre.association :genre, :strategy => :build }
     temporalCoverage '1969'
-    dctype 'Image'
+    dctype { |type| type.association :dctype, :strategy => :build }
   end
 
   factory :aggregation, class: DPLA::Aggregation do
@@ -57,6 +57,12 @@ FactoryGirl.define do
   factory :language, class: DPLA::Controlled::Language do    
     initialize_with do
       new('eng')
+    end
+  end
+
+  factory :dctype, class: DPLA::Controlled::DCMIType do    
+    initialize_with do
+      new('Image')
     end
   end
 
