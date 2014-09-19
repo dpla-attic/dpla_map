@@ -17,5 +17,7 @@ module DPLA
   autoload :Concept,            'dpla/concept'
   autoload :RightsStatement,    'dpla/rights_statement'
 
+  autoload :Annotation,         'dpla/annotation'
+
   autoload :Controlled,         'dpla/controlled'
 end

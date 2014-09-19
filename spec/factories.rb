@@ -28,7 +28,7 @@ FactoryGirl.define do
     intermediateProvider 'NYPL'
     isShownAt 'http://digitalcollections.nypl.org/items/510d47e3-57d2-a3d9-e040-e00a18064a99'
     object 'http://dp.la/item/116d5aaf3d77a5d7c5a6c7a3e10c5afe'
-    provider { 
+    provider {
       prov = ActiveTriples::Resource.new('http://dp.la/api/contributor/nypl')
       prov << RDF::Statement(prov, RDF::SKOS.prefLabel, "The New York Public Library")
       prov
@@ -54,23 +54,47 @@ FactoryGirl.define do
     description 'Photographs of Diana Davies; LGBT and HIV/AIDS Activist Collections'
   end
 
-  factory :language, class: DPLA::Controlled::Language do    
+  factory :language, class: DPLA::Controlled::Language do
     initialize_with do
       new('eng')
     end
   end
 
-  factory :dctype, class: DPLA::Controlled::DCMIType do    
+  factory :dctype, class: DPLA::Controlled::DCMIType do
     initialize_with do
       new('Image')
     end
   end
 
-  factory :genre, class: DPLA::Controlled::Genre do    
+  factory :genre, class: DPLA::Controlled::Genre do
     initialize_with do
       new('300132472')
     end
   end
+
+  # Annotations
+  factory :annotation, class: DPLA::Annotation::Annotation do
+    target { |target| target.association :source_resource, :strategy => :build }
+    body { |body| body.association :body, :strategy => :build }
+    # annotator { |annotator| annotator.association :agent, :strategy => :build }
+    created DateTime.now
+    motivation { |motivation| motivation.association :motivation, :strategy => :build }
+  end
+
+  factory :body, class: DPLA::Annotation::Body do
+    text 'Deeply Rooted'
+    language  { |language| language.association :language, :strategy => :build }
+    format 'text/plain'
+  end
+
+  factory :motivation, class: DPLA::Annotation::Motivation do
+    name 'Classifying'
+    comment 'The motivation that represents the assignment of a classification type, typically from a controlled vocabulary, to the target resource(s). For example to classify an Image resource as a Portrait.'
+    # initialize_with do
+    #   new('classifying')
+    # end
+  end
+
 end
 
 RSpec.configure do |config|
