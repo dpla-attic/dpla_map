@@ -15,7 +15,7 @@ FactoryGirl.define do
     publisher 'Penguin Books'
     relation ['Stonewall Inn [1]', 'Stonewall Inn [3]']
     rights "The New York Public Library is interested in learning more about items you've seen on our websites or elsewhere online. If you have any more information about an item or its copyright status, we want to hear from you. Please contact DigitalCollections@nypl.org with your contact information and a link to the relevant content."
-    genre 'protesting'
+    genre { |genre| genre.association :genre, :strategy => :build }
     temporalCoverage '1969'
     dctype 'Image'
   end
@@ -57,6 +57,12 @@ FactoryGirl.define do
   factory :language, class: DPLA::Controlled::Language do    
     initialize_with do
       new('eng')
+    end
+  end
+
+  factory :genre, class: DPLA::Controlled::Genre do    
+    initialize_with do
+      new('300132472')
     end
   end
 end
