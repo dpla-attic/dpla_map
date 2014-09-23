@@ -1,6 +1,8 @@
 require 'active_triples'
 require 'linked_vocabs'
 
+Dir["rdf/*.rb"].each {|file| require file }
+
 module DPLA
   LinkedVocabs.add_vocabulary(:aat, 'http://vocab.getty.edu/aat/')
   LinkedVocabs.add_vocabulary(:iso_639_3, 'http://lexvo.org/id/iso639-3/')
