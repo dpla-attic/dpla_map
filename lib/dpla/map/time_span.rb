@@ -1,4 +1,4 @@
-module DPLA
+module DPLA::MAP
   class TimeSpan < ActiveTriples::Resource
     configure :type => RDF::EDM.TimeSpan
     

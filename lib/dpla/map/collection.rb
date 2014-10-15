@@ -1,4 +1,4 @@
-module DPLA
+module DPLA::MAP
   class Collection < ActiveTriples::Resource
     configure :base_uri => 'http://dp.la/api/collections/', :type => RDF::DCMITYPE.Collection
 
