@@ -1,4 +1,4 @@
-module DPLA
+module DPLA::MAP
   class Agent < ActiveTriples::Resource
     configure :type => RDF::EDM.Agent
     

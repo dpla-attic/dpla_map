@@ -1,4 +1,4 @@
-module DPLA
+module DPLA::MAP
   class Concept < ActiveTriples::Resource
     configure :type => RDF::SKOS.Concept
     
