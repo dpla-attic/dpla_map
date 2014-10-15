@@ -1,6 +1,6 @@
-module DPLA
+module DPLA::MAP
   module Controlled
-    class DCMIType < DPLA::Concept
+    class DCMIType < DPLA::MAP::Concept
       include LinkedVocabs::Controlled
       configure :type => RDF::RDFS.Class
 

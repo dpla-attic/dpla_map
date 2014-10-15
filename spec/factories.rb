@@ -1,6 +1,6 @@
 FactoryGirl.define do
 
-  factory :source_resource, class: DPLA::SourceResource do
+  factory :source_resource, class: DPLA::MAP::SourceResource do
     collection { |collection| collection.association :collection, :strategy => :build }
     contributor 'Norma Ford'
     title 'Stonewall Inn [2]'
@@ -20,7 +20,7 @@ FactoryGirl.define do
     dctype { |type| type.association :dctype, :strategy => :build }
   end
 
-  factory :aggregation, class: DPLA::Aggregation do
+  factory :aggregation, class: DPLA::MAP::Aggregation do
     aggregatedSourceResource { |sr| sr.association :source_resource, :strategy => :build }
     dataProvider 'Manuscripts and Archives Division. The New York Public Library'
     originalRecord '<record><title>Stonewall Inn [2]</title></record>'
@@ -36,37 +36,37 @@ FactoryGirl.define do
     rightsStatement { ActiveTriples::Resource.new('http://creativecommons.org/publicdomain/mark/1.0/') }
   end
 
-  factory :web_resource, class: DPLA::WebResource do
+  factory :web_resource, class: DPLA::MAP::WebResource do
     format 'image/tiff'
     rights 'Public Domain'
     rightsStatement { ActiveTriples::Resource.new('http://creativecommons.org/publicdomain/mark/1.0/') }
   end
 
-  factory :place, class: DPLA::Place do
+  factory :place, class: DPLA::MAP::Place do
     name 'New York, NY'
     # city 'New York'
     # county 'New York County'
     # coordinates '40.7127, 74.0059'
   end
 
-  factory :collection, class: DPLA::Collection do
+  factory :collection, class: DPLA::MAP::Collection do
     title 'Diana Davies photographs, 1965-1978'
     description 'Photographs of Diana Davies; LGBT and HIV/AIDS Activist Collections'
   end
 
-  factory :language, class: DPLA::Controlled::Language do    
+  factory :language, class: DPLA::MAP::Controlled::Language do    
     initialize_with do
       new('eng')
     end
   end
 
-  factory :dctype, class: DPLA::Controlled::DCMIType do    
+  factory :dctype, class: DPLA::MAP::Controlled::DCMIType do    
     initialize_with do
       new('Image')
     end
   end
 
-  factory :genre, class: DPLA::Controlled::Genre do    
+  factory :genre, class: DPLA::MAP::Controlled::Genre do    
     initialize_with do
       new('300132472')
     end

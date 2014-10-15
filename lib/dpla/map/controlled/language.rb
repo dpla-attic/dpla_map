@@ -1,4 +1,4 @@
-module DPLA
+module DPLA::MAP
   module Controlled
     class Language < ActiveTriples::Resource
       include LinkedVocabs::Controlled
