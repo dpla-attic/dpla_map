@@ -1,4 +1,4 @@
-module DPLA
+module DPLA::MAP
   class Place < ActiveTriples::Resource
     configure :type => RDF::EDM.Place
 

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe DPLA::SourceResource do
+describe DPLA::MAP::SourceResource do
 
   subject { build(:source_resource) }
 
