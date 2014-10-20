@@ -1,3 +1,5 @@
+require 'dpla/map'
+
 FactoryGirl.define do
 
   factory :source_resource, class: DPLA::MAP::SourceResource do

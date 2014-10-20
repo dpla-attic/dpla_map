@@ -1,7 +1,15 @@
 require 'active_triples'
 require 'linked_vocabs'
 
-Dir["../rdf/*.rb"].each {|file| require file }
+require 'rdf/dpla'
+
+require 'rdf/aat'
+require 'rdf/dcmitype'
+require 'rdf/edm'
+require 'rdf/geonames'
+require 'rdf/gn'
+require 'rdf/iso_639_3'
+require 'rdf/ore'
 
 module DPLA
   module MAP
