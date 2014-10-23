@@ -5,35 +5,26 @@ module DPLA::MAP
     validates_presence_of :rights, :title
     validates_vocabulary_of :dctype, :genre, :language
 
-    property :alternateTitle, :predicate => RDF::DC.alternative
+    property :alternative, :predicate => RDF::DC.alternative
     property :collection, :predicate => RDF::DC.isPartOf, :class_name => 'DPLA::MAP::Collection'
-    property :contributor, :predicate => RDF::DC11.contributor, :class_name => 'DPLA::MAP::Agent'  # literal and/or URI
-    property :creator, :predicate => RDF::DC11.creator, :class_name => 'DPLA::MAP::Agent' # literal and/or URI
+    property :contributor, :predicate => RDF::DC.contributor, :class_name => 'DPLA::MAP::Agent'
+    property :creator, :predicate => RDF::DC.creator, :class_name => 'DPLA::MAP::Agent'
     property :date, :predicate => RDF::DC11.date, :class_name => 'DPLA::MAP::TimeSpan'
-    property :description, :predicate => RDF::DC11.description # any reason not to use dcterms here? RDF::DC.description
+    property :description, :predicate => RDF::DC.description
     property :extent, :predicate => RDF::DC.extent
-    property :format, :predicate => RDF::DC11.format # literal and/or URI
-    property :identifier, :predicate => RDF::DC11.identifier # literal and/or URI
-    property :language, :predicate => RDF::DC.language, :class_name => 'DPLA::MAP::Controlled::Language'
-    property :place, :predicate => RDF::DC.spatial, :class_name => 'DPLA::MAP::Place' # literal and/or URI
-    property :publisher, :predicate => RDF::DC11.publisher # literal and/or URI
-    property :relation, :predicate => RDF::DC11.relation # literal and/or URI
-    property :replacedBy, :predicate => RDF::DC.isReplacedBy # literal and/or URI
-    property :replaces, :predicate => RDF::DC.replaces # literal and/or URI
-    property :rights, :predicate => RDF::DC11.rights
+    property :format, :predicate => RDF::DC11.format
     property :genre, :predicate => RDF::EDM.hasType, :class_name => 'DPLA::MAP::Controlled::Genre'
+    property :identifier, :predicate => RDF::DC11.identifier
+    property :language, :predicate => RDF::DC.language, :class_name => 'DPLA::MAP::Controlled::Language'
+    property :spatial, :predicate => RDF::DC.spatial, :class_name => 'DPLA::MAP::Place'
+    property :publisher, :predicate => RDF::DC.publisher, :class_name => 'DPLA::MAP::Agent'
+    property :relation, :predicate => RDF::DC11.relation
+    property :isReplacedBy, :predicate => RDF::DPLA.isReplacedBy
+    property :replaces, :predicate => RDF::DPLA.replaces
+    property :rights, :predicate => RDF::DC11.rights
     property :subject, :predicate => RDF::DC.subject, :class_name => 'DPLA::MAP::Concept'
-    property :temporalCoverage, :predicate => RDF::DC.temporal # literal and/or URI
-    property :title, :predicate => RDF::DC11.title # any reason not to use dcterms here? RDF::DC.title
-    property :dctype, :predicate => RDF::DC11.type, :class_name => 'DPLA::MAP::Controlled::DCMIType'
-
-    # formal rights statements
-    # property :rights, :predicate => RDF::DC.rights, :class_name => 'DPLA::RightsStatement'
-    
-    # languages w/ better handling of the controlled vocab?
-    # property :languageControlled, :predicate => RDF::DC.language, :class_name => 'DPLA::Controlled::Language'
-
-    # controlled vocab on type
-    # property :dcmitype, :predicate => RDF::DC.type, :class_name => 'DPLA::Controlled::DCMIType'
+    property :temporal, :predicate => RDF::DC.temporal, :class_name => 'DPLA::MAP::TimeSpan'
+    property :title, :predicate => RDF::DC.title
+    property :dctype, :predicate => RDF::DC.type, :class_name => 'DPLA::MAP::Controlled::DCMIType'
   end
 end

@@ -3,38 +3,39 @@ require 'dpla/map'
 FactoryGirl.define do
 
   factory :source_resource, class: DPLA::MAP::SourceResource do
+    alternateTitle 'Stonewall Inn Graffiti'
     collection { |collection| collection.association :collection, :strategy => :build }
-    contributor 'Norma Ford'
-    title 'Stonewall Inn [2]'
-    creator 'Davies, Diana (1938-)'
-    subject ['Lesbians', 'Gay activists']
+    contributor { |person| person.association :agent, :strategy => :build }
+    creator { |person| person.association :agent, :label => 'Davies, Diana (1938-)', :strategy => :build }
+    date { |timespan| timespan.association :timespan, :strategy => :build }
     description 'Window of the Stonewall Bar N.Y. 1969. The other half of the graffiti was erased by the time Diana photographed it.'
     extent '10x12 cm'
     format 'Silver Gelatin Print'
+    genre { |genre| genre.association :genre, :strategy => :build }
     identifier '510d47e3-57d2-a3d9-e040-e00a18064a99'
     language { |language| language.association :language, :strategy => :build }
     place { |place| place.association :place, :strategy => :build }
-    publisher 'Penguin Books'
+    publisher { |agent| agent.association :agent, :label => 'Penguin Books', :strategy => :build }
     relation ['Stonewall Inn [1]', 'Stonewall Inn [3]']
+    #replacedBy
+    #replaces
     rights "The New York Public Library is interested in learning more about items you've seen on our websites or elsewhere online. If you have any more information about an item or its copyright status, we want to hear from you. Please contact DigitalCollections@nypl.org with your contact information and a link to the relevant content."
-    genre { |genre| genre.association :genre, :strategy => :build }
+    subject { |concept| concept.association :concept, :strategy => :build }
     temporalCoverage '1969'
+    title 'Stonewall Inn [2]'
     dctype { |type| type.association :dctype, :strategy => :build }
   end
 
   factory :aggregation, class: DPLA::MAP::Aggregation do
-    aggregatedSourceResource { |sr| sr.association :source_resource, :strategy => :build }
-    dataProvider 'Manuscripts and Archives Division. The New York Public Library'
-    originalRecord '<record><title>Stonewall Inn [2]</title></record>'
+    aggregatedCHO { |sr| sr.association :source_resource, :strategy => :build }
+    dataProvider { |agent| agent.association :agent, :label => 'Manuscripts and Archives Division. The New York Public Library', :strategy => :build }
+    originalRecord { RDF::URI('http://api.dp.la/originalRecord/12345') }
     hasView { |wr| wr.association :web_resource, :strategy => :build }
-    intermediateProvider 'NYPL'
-    isShownAt 'http://digitalcollections.nypl.org/items/510d47e3-57d2-a3d9-e040-e00a18064a99'
-    object 'http://dp.la/item/116d5aaf3d77a5d7c5a6c7a3e10c5afe'
-    provider { 
-      prov = ActiveTriples::Resource.new('http://dp.la/api/contributor/nypl')
-      prov << RDF::Statement(prov, RDF::SKOS.prefLabel, "The New York Public Library")
-      prov
-    }
+    intermediateProvider  { |agent| agent.association :agent, :label => 'The New York Public Library', :strategy => :build }
+    isShownAt  { |wr| wr.association :web_resource, :strategy => :build } # 'http://digitalcollections.nypl.org/items/510d47e3-57d2-a3d9-e040-e00a18064a99'
+    object { |wr| wr.association :web_resource, :strategy => :build } # 'http://dp.la/item/116d5aaf3d77a5d7c5a6c7a3e10c5afe'
+    preview { |wr| wr.association :web_resource, :strategy => :build }
+    provider  { |agent| agent.association :agent, :label => 'The New York Public Library', :strategy => :build }
     rightsStatement { ActiveTriples::Resource.new('http://creativecommons.org/publicdomain/mark/1.0/') }
   end
 
@@ -45,15 +46,35 @@ FactoryGirl.define do
   end
 
   factory :place, class: DPLA::MAP::Place do
-    name 'New York, NY'
-    # city 'New York'
-    # county 'New York County'
-    # coordinates '40.7127, 74.0059'
+    label 'New York, NY'
+    providedLabel 'New York City'
+    lat '40.7127'
+    long '74.0059'
+    alt '10'
+    parentFeature { ActiveTriples::Resource.new('http://sws.geonames.org/5128638/') }
+    countryCode 'US'
+    exactMatch { ActiveTriples::Resource.new('http://sws.geonames.org/5128581/') }
+  end
+
+  factory :agent, class: DPLA::MAP::Agent do
+    label 'Norma Ford'
+    providedLabel 'Norma Ford'
   end
 
   factory :collection, class: DPLA::MAP::Collection do
     title 'Diana Davies photographs, 1965-1978'
     description 'Photographs of Diana Davies; LGBT and HIV/AIDS Activist Collections'
+  end
+
+  factory :concept, class: DPLA::MAP::Concept do
+    prefLabel 'Gay activists'
+    providedLabel 'Gay Activists'
+  end
+
+  factory :timespan, class: DPLA::MAP::TimeSpan do
+    providedLabel '1969.'
+    self.begin Date.new(1969)
+    self.end Date.new(1969, 12, 31)
   end
 
   factory :language, class: DPLA::MAP::Controlled::Language do    

@@ -3,6 +3,8 @@ module DPLA::MAP
     configure :type => RDF::EDM.Agent
     
     property :label, :predicate => RDF::SKOS.prefLabel
-    property :sameAs, :predicate => RDF::OWL.sameAs
+    property :providedLabel, :predicate => RDF::DPLA.providedLabel
+    property :exactMatch, :predicate => RDF::SKOS.exactMatch
+    property :closeMatch, :predicate => RDF::SKOS.closeMatch
   end
 end
