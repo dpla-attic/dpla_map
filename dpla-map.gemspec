@@ -25,5 +25,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'pry'
   s.add_development_dependency 'pry-doc'
   s.add_development_dependency 'pry-debugger'
-  s.add_development_dependency 'factory_girl', '~>4.0'
+  s.add_development_dependency 'factory_girl', '~>4.4.0'
 end
