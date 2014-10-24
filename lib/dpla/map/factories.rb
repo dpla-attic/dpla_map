@@ -75,8 +75,10 @@ FactoryGirl.define do
   end
 end
 
-RSpec.configure do |config|
-  config.before(:suite) do
-    FactoryGirl.lint
+if defined?(RSpec)
+  RSpec.configure do |config|
+    config.before(:suite) do
+      FactoryGirl.lint
+    end
   end
 end
