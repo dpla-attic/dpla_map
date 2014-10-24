@@ -1,6 +1,8 @@
 require 'active_triples'
 require 'linked_vocabs'
 
+require 'date'
+
 require 'rdf/dpla'
 
 require 'rdf/aat'
