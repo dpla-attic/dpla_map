@@ -3,7 +3,7 @@ require 'dpla/map'
 FactoryGirl.define do
 
   factory :source_resource, class: DPLA::MAP::SourceResource do
-    alternateTitle 'Stonewall Inn Graffiti'
+    alternative 'Stonewall Inn Graffiti'
     collection { |collection| collection.association :collection, :strategy => :build }
     contributor { |person| person.association :agent, :strategy => :build }
     creator { |person| person.association :agent, :label => 'Davies, Diana (1938-)', :strategy => :build }
@@ -14,14 +14,14 @@ FactoryGirl.define do
     genre { |genre| genre.association :genre, :strategy => :build }
     identifier '510d47e3-57d2-a3d9-e040-e00a18064a99'
     language { |language| language.association :language, :strategy => :build }
-    place { |place| place.association :place, :strategy => :build }
+    spatial { |place| place.association :place, :strategy => :build }
     publisher { |agent| agent.association :agent, :label => 'Penguin Books', :strategy => :build }
     relation ['Stonewall Inn [1]', 'Stonewall Inn [3]']
-    #replacedBy
+    #isReplacedBy
     #replaces
     rights "The New York Public Library is interested in learning more about items you've seen on our websites or elsewhere online. If you have any more information about an item or its copyright status, we want to hear from you. Please contact DigitalCollections@nypl.org with your contact information and a link to the relevant content."
     subject { |concept| concept.association :concept, :strategy => :build }
-    temporalCoverage '1969'
+    temporal '1969'
     title 'Stonewall Inn [2]'
     dctype { |type| type.association :dctype, :strategy => :build }
   end
