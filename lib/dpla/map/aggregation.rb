@@ -14,5 +14,9 @@ module DPLA::MAP
     property :preview, :predicate => RDF::EDM.preview, :class_name => 'DPLA::MAP::WebResource'
     property :provider, :predicate => RDF::EDM.provider, :class_name => 'DPLA::MAP::Agent'
     property :rightsStatement, :predicate => RDF::EDM.rights, :class_name => 'DPLA::MAP::RightsStatement'
+
+    def jsonld_context
+      DPLA::MAP::CONTEXT['@context']
+    end
   end
 end
