@@ -32,9 +32,9 @@ FactoryGirl.define do
     originalRecord { RDF::URI('http://api.dp.la/originalRecord/12345') }
     hasView { |wr| wr.association :web_resource, :strategy => :build }
     intermediateProvider  { |agent| agent.association :agent, :label => 'The New York Public Library', :strategy => :build }
-    isShownAt  { |wr| wr.association :web_resource, :strategy => :build } # 'http://digitalcollections.nypl.org/items/510d47e3-57d2-a3d9-e040-e00a18064a99'
-    object { |wr| wr.association :web_resource, :strategy => :build } # 'http://dp.la/item/116d5aaf3d77a5d7c5a6c7a3e10c5afe'
-    preview { |wr| wr.association :web_resource, :strategy => :build }
+    isShownAt  { |wr| wr.association :isShownAt, :strategy => :build }
+    object { |wr| wr.association :object, :strategy => :build }
+    preview { |wr| wr.association :preview, :strategy => :build }
     provider  { |agent| agent.association :agent, :label => 'The New York Public Library', :strategy => :build }
     rightsStatement { ActiveTriples::Resource.new('http://creativecommons.org/publicdomain/mark/1.0/') }
   end
@@ -43,7 +43,20 @@ FactoryGirl.define do
     format 'image/tiff'
     rights 'Public Domain'
     rightsStatement { ActiveTriples::Resource.new('http://creativecommons.org/publicdomain/mark/1.0/') }
+
+    factory :preview do
+      initialize_with { new('http://images.nypl.org/index.php?id=1582254&t=t') }
+    end
+
+    factory :object do
+      initialize_with { new('http://images.nypl.org/index.php?id=1582254&t=w') }
+    end
+
+    factory :isShownAt do
+      initialize_with { new('http://digitalcollections.nypl.org/items/510d47e3-57d2-a3d9-e040-e00a18064a99') }
+    end
   end
+
 
   factory :place, class: DPLA::MAP::Place do
     label 'New York, NY'
@@ -77,19 +90,19 @@ FactoryGirl.define do
     self.end Date.new(1969, 12, 31)
   end
 
-  factory :language, class: DPLA::MAP::Controlled::Language do    
+  factory :language, class: DPLA::MAP::Controlled::Language do
     initialize_with do
       new('eng')
     end
   end
 
-  factory :dctype, class: DPLA::MAP::Controlled::DCMIType do    
+  factory :dctype, class: DPLA::MAP::Controlled::DCMIType do
     initialize_with do
       new('Image')
     end
   end
 
-  factory :genre, class: DPLA::MAP::Controlled::Genre do    
+  factory :genre, class: DPLA::MAP::Controlled::Genre do
     initialize_with do
       new('300132472')
     end
