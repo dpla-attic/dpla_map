@@ -18,5 +18,9 @@ module DPLA::MAP
     def jsonld_context
       DPLA::MAP::CONTEXT['@context']
     end
+
+    def to_jsonld
+      JSON::LD::API.frame(JSON.parse(dump(:jsonld)), DPLA::MAP::FRAME)
+    end
   end
 end
