@@ -6,6 +6,7 @@ Gem::Specification.new do |s|
   s.version     = DPLA::MAP::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Tom Johnson"]
+  s.license     = "MIT"
   s.homepage    = 'https://github.com/dpla/dpla_map'
   s.email       = 'tom@dp.la'
   s.summary     = %q{DPLA's metadata application profile in ActiveTriples.}
