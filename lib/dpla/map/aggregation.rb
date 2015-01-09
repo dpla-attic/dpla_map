@@ -2,9 +2,9 @@ module DPLA::MAP
   class Aggregation < ActiveTriples::Resource
     configure :type => RDF::ORE.Aggregation
 
-    validates_presence_of :aggregatedCHO, :originalRecord, :isShownAt, :object, :provider
+    validates_presence_of :sourceResource, :originalRecord, :isShownAt, :object, :provider
 
-    property :aggregatedCHO, :predicate => RDF::EDM.aggregatedCHO, :class_name => 'DPLA::MAP::SourceResource'
+    property :sourceResource, :predicate => RDF::EDM.aggregatedCHO, :class_name => 'DPLA::MAP::SourceResource'
     property :dataProvider, :predicate => RDF::EDM.dataProvider, :class_name => 'DPLA::MAP::Agent'
     property :originalRecord, :predicate => RDF::DPLA.originalRecord
     property :hasView, :predicate => RDF::EDM.hasView, :class_name => 'DPLA::MAP::WebResource'

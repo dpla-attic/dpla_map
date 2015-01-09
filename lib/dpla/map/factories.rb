@@ -27,7 +27,7 @@ FactoryGirl.define do
   end
 
   factory :aggregation, class: DPLA::MAP::Aggregation do
-    aggregatedCHO { |sr| sr.association :source_resource, :strategy => :build }
+    sourceResource { |sr| sr.association :source_resource, :strategy => :build }
     dataProvider { |agent| agent.association :agent, :label => 'Manuscripts and Archives Division. The New York Public Library', :strategy => :build }
     originalRecord { RDF::URI('http://api.dp.la/originalRecord/12345') }
     hasView { |wr| wr.association :web_resource, :strategy => :build }
