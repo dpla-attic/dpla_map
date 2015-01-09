@@ -30,6 +30,7 @@ module DPLA::MAP
       "identifier": "dc11:identifier",
       "format": "dc11:format",
       "rights": "dc11:rights",
+      "rightsHolder": "dc:rightsHolder",
       "relation": "dc11:relation",
       "WebResource": "edm:WebResource",
       "sourceResource": "edm:aggregatedCHO",
