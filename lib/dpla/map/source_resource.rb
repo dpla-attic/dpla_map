@@ -22,6 +22,7 @@ module DPLA::MAP
     property :isReplacedBy, :predicate => RDF::DPLA.isReplacedBy
     property :replaces, :predicate => RDF::DPLA.replaces
     property :rights, :predicate => RDF::DC11.rights
+    property :rightsHolder, :predicate => RDF::DC.rightsHolder, :class_name => 'DPLA::MAP::Agent'
     property :subject, :predicate => RDF::DC.subject, :class_name => 'DPLA::MAP::Concept'
     property :temporal, :predicate => RDF::DC.temporal, :class_name => 'DPLA::MAP::TimeSpan'
     property :title, :predicate => RDF::DC.title

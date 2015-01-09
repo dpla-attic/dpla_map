@@ -20,6 +20,7 @@ FactoryGirl.define do
     #isReplacedBy
     #replaces
     rights "The New York Public Library is interested in learning more about items you've seen on our websites or elsewhere online. If you have any more information about an item or its copyright status, we want to hear from you. Please contact DigitalCollections@nypl.org with your contact information and a link to the relevant content."
+    rightsHolder { |agent| agent.association :agent, :label => 'John Palfrey', :strategy => :build }
     subject { |concept| concept.association :concept, :strategy => :build }
     temporal '1969'
     title 'Stonewall Inn [2]'
@@ -27,7 +28,7 @@ FactoryGirl.define do
   end
 
   factory :aggregation, class: DPLA::MAP::Aggregation do
-    aggregatedCHO { |sr| sr.association :source_resource, :strategy => :build }
+    sourceResource { |sr| sr.association :source_resource, :strategy => :build }
     dataProvider { |agent| agent.association :agent, :label => 'Manuscripts and Archives Division. The New York Public Library', :strategy => :build }
     originalRecord { RDF::URI('http://api.dp.la/originalRecord/12345') }
     hasView { |wr| wr.association :web_resource, :strategy => :build }
