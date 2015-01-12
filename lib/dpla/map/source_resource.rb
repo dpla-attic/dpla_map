@@ -12,7 +12,7 @@ module DPLA::MAP
     property :date, :predicate => RDF::DC11.date, :class_name => 'DPLA::MAP::TimeSpan'
     property :description, :predicate => RDF::DC.description
     property :extent, :predicate => RDF::DC.extent
-    property :format, :predicate => RDF::DC11.format
+    property :dcformat, :predicate => RDF::DC11.format
     property :genre, :predicate => RDF::EDM.hasType, :class_name => 'DPLA::MAP::Controlled::Genre'
     property :identifier, :predicate => RDF::DC11.identifier
     property :language, :predicate => RDF::DC.language, :class_name => 'DPLA::MAP::Controlled::Language'
