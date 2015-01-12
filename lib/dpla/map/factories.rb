@@ -10,7 +10,7 @@ FactoryGirl.define do
     date { |timespan| timespan.association :timespan, :strategy => :build }
     description 'Window of the Stonewall Bar N.Y. 1969. The other half of the graffiti was erased by the time Diana photographed it.'
     extent '10x12 cm'
-    format 'Silver Gelatin Print'
+    dcformat 'Silver Gelatin Print'
     genre { |genre| genre.association :genre, :strategy => :build }
     identifier '510d47e3-57d2-a3d9-e040-e00a18064a99'
     language { |language| language.association :language, :strategy => :build }
@@ -41,7 +41,7 @@ FactoryGirl.define do
   end
 
   factory :web_resource, class: DPLA::MAP::WebResource do
-    format 'image/tiff'
+    dcformat 'image/tiff'
     rights 'Public Domain'
     rightsStatement { ActiveTriples::Resource.new('http://creativecommons.org/publicdomain/mark/1.0/') }
 
