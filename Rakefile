@@ -1,6 +1,6 @@
 #!/usr/bin/env rake
 
-require 'dpla'
+require 'dpla/map'
 
 desc "Generate Vocabularies"
 
