@@ -95,18 +95,21 @@ FactoryGirl.define do
     initialize_with do
       new('eng')
     end
+    providedLabel 'English'
   end
 
   factory :dctype, class: DPLA::MAP::Controlled::DCMIType do
     initialize_with do
       new('Image')
     end
+    providedLabel 'img'
   end
 
   factory :genre, class: DPLA::MAP::Controlled::Genre do
     initialize_with do
       new('300132472')
     end
+    providedLabel 'Moomin'
   end
 end
 
