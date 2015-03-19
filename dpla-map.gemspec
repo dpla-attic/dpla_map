@@ -19,8 +19,8 @@ Gem::Specification.new do |s|
 
   s.require_paths = ['lib', 'lib/dpla', 'lib/dpla/map', 'lib/rdf']
 
-  s.add_dependency 'active-triples', '~>0.3'
-  s.add_dependency 'linked_vocabs', '~>0.1'
+  s.add_dependency 'active-triples', '~>0.6.0'
+  s.add_dependency 'linked_vocabs', '~>0.2.0'
 
   s.add_development_dependency 'rspec'
   s.add_development_dependency 'pry'
