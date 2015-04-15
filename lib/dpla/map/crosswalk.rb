@@ -75,6 +75,7 @@ module DPLA::MAP
       end
 
       def build_source_resource
+        return nil if @parent.sourceResource.empty?
         parent_sr = @parent.sourceResource.first
         sr = { :@id => parent_sr.rdf_subject.to_s }
 
