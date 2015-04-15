@@ -23,22 +23,18 @@ module DPLA::MAP
       end
 
       def build_aggregation
-        hash.merge({ :ingestType => 'item',
+        raise 'Tried to index a blank node!' if @parent.node?
+        hash.merge!({ :ingestType => 'item',
                      # @todo: FIXME! WHOA THIS IS BAD!
                      #   the legacy system increments `ingestionSequence` for
                      #   each subsequent harvest. Figure out how to do that,
                      #   or what we want to do instead.
                      :ingestionSequence => 1,
-                     # :ingestDate => Date.today ??
-                     #    or maybe the dc:created/modified stored by Marmotta?
-                     #    for the Aggregation (probably this)? or the OriginalRecord?
+                     :ingestDate => Date.today.as_json,
                      :@context => "http://dp.la/api/items/context",
                      :aggregatedCHO => '#sourceResource',
                      :@id => make_id,
-                     :id => make_id.split('/').last
-                     # ideally, it would be the `local_name` of the provider
-                     # + `--` + `whatever the provider id was`
-                     # :_id => ^^^^^
+                     :id => local_name
                    })
 
         set_value(hash, :dataProvider, @parent.dataProvider.map(&:label), true)
@@ -70,6 +66,16 @@ module DPLA::MAP
         set_value(hash, :object, @parent.object, true) do |view|
           view.rdf_subject.to_s
         end
+
+        # This doesn't work, because we have no good way of implementing
+        #`#get_provider_id`.
+        #
+        # p = @parent.provider.first || DPLA::MAP::Agent.new
+        # p_id = p.node? ? p.rdf_subject.to_s.split('/').last : p.rdf_label
+        # hash[:_id] = "#{p_id}-#{get_provider_id}"
+        #
+        # instead... do:
+        hash[:_id] = hash[:id]
 
         hash
       end
@@ -187,8 +193,12 @@ module DPLA::MAP
         target_hash[key] = first ? value.first : Array(value).flatten
       end
 
+      def local_name
+        @parent.rdf_subject.to_s.split('/').last
+      end
+
       def make_id(uri = nil)
-        uri ||= @parent.rdf_subject
+        uri ||= "http://dp.la/api/items/#{local_name}"
         uri.to_s
       end
     end
