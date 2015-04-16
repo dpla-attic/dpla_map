@@ -139,6 +139,7 @@ module DPLA::MAP
       end
 
       def build_collection(source)
+        return unless source.is_a? DPLA::MAP::Collection
         coll = {}
         set_value(coll, :title, source.title)
         coll[:@id] = source.rdf_subject.to_s
@@ -148,6 +149,7 @@ module DPLA::MAP
       end
 
       def build_time_span(source)
+        return unless source.is_a? DPLA::MAP::TimeSpan
         date = {}
         date[:displayDate]
         set_value(date, :begin, source.begin, true, &:as_json)
@@ -157,6 +159,7 @@ module DPLA::MAP
       end
 
       def build_provider(source)
+        return unless source.is_a? DPLA::MAP::Agent
         provider = {}
         provider[:name] = source.label.first if source.label.any?
         provider[:name] ||= source.providedLabel.first if
@@ -166,12 +169,13 @@ module DPLA::MAP
       end
 
       def build_dc_type(source)
-        return unless source.rdf_subject
+        return unless source.is_a? DPLA::MAP::Controlled::DCMIType
         vocab_sym = source.rdf_subject.pname.split(':').last.to_sym
         RDF::DCMITYPE[vocab_sym].label.downcase
       end
 
       def build_place(source)
+        return unless source.is_a? DPLA::MAP::Place
         place = {}
         place[:name] = source.label.first if source.label.any?
         place[:name] ||= source.providedLabel.first if source.providedLabel.any?
@@ -181,6 +185,7 @@ module DPLA::MAP
       end
 
       def build_subject(source)
+        return unless source.is_a? DPLA::MAP::Concept
         subject = {}
         subject[:name] = source.prefLabel if source.prefLabel.any?
         subject[:name] = source.providedLabel if source.providedLabel.any?
