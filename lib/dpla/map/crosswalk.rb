@@ -51,7 +51,7 @@ module DPLA::MAP
 
         hash[:sourceResource] = build_source_resource
 
-        hash[:provider] = @parent.provider.map do |provider|
+        set_value(hash, :provider, @parent.provider) do |provider|
           build_provider(provider)
         end
 
@@ -115,7 +115,7 @@ module DPLA::MAP
         set_value(sr, :temporal, parent_sr.temporal)
         set_value(sr, :title, parent_sr.title)
 
-        sr[:collection] = parent_sr.collection.map do |coll|
+        set_value(sr, :collection, parent_sr.collection) do |coll|
           build_collection(coll)
         end
 
@@ -123,15 +123,15 @@ module DPLA::MAP
           build_dc_type(type)
         end
 
-        sr[:date] = parent_sr.date.map do |date|
+        set_value(sr, :date, parent_sr.date) do |date|
           build_time_span(date)
         end
 
-        sr[:place] = parent_sr.spatial.map do |place|
+        set_value(sr, :place, parent_sr.spatial) do |place|
           build_place(place)
         end
 
-        sr[:subject] = parent_sr.subject.map do |subj|
+        set_value(sr, :subject, parent_sr.subject) do |subj|
           build_subject(subj)
         end
 
@@ -145,7 +145,7 @@ module DPLA::MAP
         coll[:@id] = source.rdf_subject.to_s
         coll[:id] = source.rdf_subject.to_s.split('/').last
 
-        coll
+        coll.any? ? nil : coll
       end
 
       def build_time_span(source)
@@ -155,7 +155,7 @@ module DPLA::MAP
         set_value(date, :begin, source.begin, true, &:as_json)
         set_value(date, :end, source.end, true, &:as_json)
 
-        date
+        date.any? ? nil : date
       end
 
       def build_provider(source)
@@ -165,11 +165,12 @@ module DPLA::MAP
         provider[:name] ||= source.providedLabel.first if
           source.providedLabel.any?
         provider[:@id] = source.rdf_subject.to_s
-        provider
+        provider.any? ? nil : provider
       end
 
       def build_dc_type(source)
         return unless source.is_a? DPLA::MAP::Controlled::DCMIType
+        return if source.node?
         vocab_sym = source.rdf_subject.pname.split(':').last.to_sym
         RDF::DCMITYPE[vocab_sym].label.downcase
       end
@@ -181,7 +182,7 @@ module DPLA::MAP
         place[:name] ||= source.providedLabel.first if source.providedLabel.any?
         place[:coordinates] = "#{source.lat}, #{source.long}" if
           source.lat.any? && source.long.any?
-        {}
+        place.any? ? nil : place
       end
 
       def build_subject(source)
@@ -189,13 +190,16 @@ module DPLA::MAP
         subject = {}
         subject[:name] = source.prefLabel if source.prefLabel.any?
         subject[:name] = source.providedLabel if source.providedLabel.any?
-        subject
+
+        subject.any? ? nil : subject
       end
 
       def set_value(target_hash, key, value, first = false, &block)
         value = Array(value).map(&block) if block_given?
         return if Array(value).empty?
-        target_hash[key] = first ? value.first : Array(value).flatten
+        value = Array(value).flatten.compact
+        return if value.empty?
+        target_hash[key] = first ? value.first : value
       end
 
       def local_name
