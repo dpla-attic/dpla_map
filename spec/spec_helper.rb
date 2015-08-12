@@ -1,8 +1,8 @@
 require 'bundler/setup'
 require 'factory_girl'
-require 'dpla'
+require 'dpla/map'
 
-require 'factories.rb'
+require 'dpla/map/factories'
 
 Bundler.setup
 

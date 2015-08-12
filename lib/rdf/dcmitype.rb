@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-# This file generated automatically using vocab-fetch from http://purl.org/dc/dcmitype/
+# This file generated automatically using vocab-fetch from http://dublincore.org/2012/06/14/dctype.rdf
 require 'rdf'
 module RDF
   class DCMITYPE < RDF::StrictVocabulary("http://purl.org/dc/dcmitype/")
