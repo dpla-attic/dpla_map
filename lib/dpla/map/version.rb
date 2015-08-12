@@ -1,5 +1,5 @@
 module DPLA
   module MAP
-    VERSION = '4.0.0.0.pre.10'
+    VERSION = '4.0.0.0.pre.11'
   end
 end
