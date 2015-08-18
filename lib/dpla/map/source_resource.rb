@@ -3,7 +3,6 @@ module DPLA::MAP
     configure :base_uri => 'http://dp.la/api/items/', :type => RDF::DPLA.SourceResource
 
     validates_presence_of :rights, :title
-    validates_vocabulary_of :dctype, :genre, :language
 
     property :alternative, :predicate => RDF::DC.alternative
     property :collection, :predicate => RDF::DC.isPartOf, :class_name => 'DPLA::MAP::Collection'
