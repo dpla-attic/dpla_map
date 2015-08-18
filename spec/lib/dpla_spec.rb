@@ -24,3 +24,34 @@ describe DPLA::MAP::SourceResource do
     expect(subject.dctype).to contain_exactly(an_instance_of(DPLA::MAP::Controlled::DCMIType))
   end
 end
+
+describe DPLA::MAP::Aggregation do
+  subject { build(:aggregation) }
+
+  it 'has nested values' do
+    expect(subject.sourceResource.first.subject.first.prefLabel)
+      .to contain_exactly('Gay activists')
+  end
+  
+  context 'when built from parsed graph' do
+    let(:parsed) do
+      lang = DPLA::MAP::Controlled::Language.new
+      lang.providedLabel = label
+      subject.sourceResource.first.language = lang
+
+      uri = RDF::URI('http://example.org/moomin')
+      subject.set_subject!(uri)
+
+      agg = DPLA::MAP::Aggregation.new(uri)
+      agg << RDF::Reader.for(:ttl).new(subject.dump(:ttl))
+      agg
+    end
+
+    let(:label) { 'eng' }
+
+    it 'has nested values' do
+      expect(parsed.sourceResource.first.language.first.providedLabel)
+        .to contain_exactly(label)
+    end
+  end
+end
