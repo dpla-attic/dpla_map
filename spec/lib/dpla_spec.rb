@@ -12,6 +12,10 @@ describe DPLA::MAP::SourceResource do
     expect(subject.genre).to contain_exactly(an_instance_of(DPLA::MAP::Controlled::Genre))
   end
 
+  it 'has a dc:date that is a DPLA::MAP::TimeSpan' do
+    expect(subject.date).to contain_exactly(an_instance_of(DPLA::MAP::TimeSpan))
+  end
+
   it 'has a dcterms:language that is a DPLA::MAP::Controlled::Language' do
     expect(subject.language).to contain_exactly(an_instance_of(DPLA::MAP::Controlled::Language))
   end
@@ -31,6 +35,8 @@ describe DPLA::MAP::Aggregation do
   it 'has nested values' do
     expect(subject.sourceResource.first.subject.first.prefLabel)
       .to contain_exactly('Gay activists')
+    expect(subject.sourceResource.first.date.first.providedLabel)
+      .to contain_exactly('1969.')
   end
   
   context 'when built from parsed graph' do
