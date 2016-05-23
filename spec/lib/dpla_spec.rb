@@ -41,14 +41,14 @@ describe DPLA::MAP::Aggregation do
   
   context 'when built from parsed graph' do
     let(:parsed) do
+      uri = RDF::URI('http://example.org/moomin')
+      subject.set_subject!(uri)
+
       lang = DPLA::MAP::Controlled::Language.new
       lang.providedLabel = label
       subject.sourceResource.first.language = lang
 
-      uri = RDF::URI('http://example.org/moomin')
-      subject.set_subject!(uri)
-
-      agg = DPLA::MAP::Aggregation.new(uri)
+      agg = DPLA::MAP::Aggregation.new(subject.rdf_subject)
       agg << RDF::Reader.for(:ttl).new(subject.dump(:ttl))
       agg
     end

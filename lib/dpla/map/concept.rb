@@ -1,15 +1,17 @@
 module DPLA::MAP
-  class Concept < ActiveTriples::Resource
-    configure :type => RDF::SKOS.Concept
+  class Concept
+    include ActiveTriples::RDFSource
 
-    property :prefLabel, :predicate => RDF::SKOS.prefLabel
+    configure :type => RDF::Vocab::SKOS.Concept
+
+    property :prefLabel,     :predicate => RDF::Vocab::SKOS.prefLabel
     property :providedLabel, :predicate => RDF::DPLA.providedLabel
-    property :exactMatch, :predicate => RDF::SKOS.exactMatch
-    property :closeMatch, :predicate => RDF::SKOS.closeMatch
-    property :note, :predicate => RDF::SKOS.note
-    property :scheme, :predicate => RDF::SKOS.inScheme
+    property :exactMatch,    :predicate => RDF::Vocab::SKOS.exactMatch
+    property :closeMatch,    :predicate => RDF::Vocab::SKOS.closeMatch
+    property :note,          :predicate => RDF::Vocab::SKOS.note
+    property :scheme,        :predicate => RDF::Vocab::SKOS.inScheme
 
-    alias_method :concept, :prefLabel
-    alias_method :concept=, :prefLabel=    
+    alias_method :concept,  :prefLabel
+    alias_method :concept=, :prefLabel=
   end
 end

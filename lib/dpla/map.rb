@@ -1,8 +1,10 @@
+
 require 'active_triples'
 
 require 'date'
 
 require 'rdf/turtle'
+require 'rdf/vocab'
 require 'rdf/dpla'
 
 require 'rdf/aat'
