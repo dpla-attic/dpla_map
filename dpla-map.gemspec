@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.email       = 'tom@dp.la'
   s.summary     = %q{DPLA's metadata application profile in ActiveTriples.}
   s.description = %q{DPLA's metadata application profile in ActiveTriples.}
-  s.required_ruby_version     = '>= 1.9.3'
+  s.required_ruby_version     = '>= 2.0.0'
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
