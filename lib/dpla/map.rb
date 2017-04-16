@@ -24,6 +24,7 @@ module DPLA
     autoload :Agent,              'dpla/map/agent'
     autoload :Concept,            'dpla/map/concept'
     autoload :RightsStatement,    'dpla/map/rights_statement'
+    autoload :Crosswalk,          'dpla/map/crosswalk'
     autoload :CONTEXT,            'dpla/map/context'
     autoload :FRAME,              'dpla/map/frame'
 
